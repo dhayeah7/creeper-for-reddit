@@ -41,4 +41,10 @@ https://github.com/dhayeah7/creeper-for-reddit/blob/master/PRIVACY.md
 
 ## Images
 - Icon: icons/icon128.png
-- Screenshot: store/screenshot-1.png (1280x800)
+- Screenshots (1280x800 JPEG, upload in this order):
+  1. store/screenshot-1-hero.jpg
+  2. store/screenshot-2-before-after.jpg
+  3. store/screenshot-3-native.jpg
+- Small promo tile (440x280 JPEG): store/promo-small-440x280.jpg
+
+All screenshots use Reddit's official u/reddit account or an anonymized profile ("quiet_redditor", default avatar).
