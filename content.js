@@ -189,6 +189,7 @@ function peekingEyes(caption) {
 function start(ctx, key) {
   const feed = document.querySelector('shreddit-feed');
   if (!feed) return;
+  sweep(true);
   document.documentElement.classList.add('creeper-active');
 
   const root = document.createElement('div');
@@ -200,7 +201,7 @@ function start(ctx, key) {
 
   const kinds = { overview: ['posts', 'comments'], submitted: ['posts'], comments: ['comments'] }[ctx.tab];
   // queue: names fetched from the archive but not yet rendered, so a retry resumes where it failed.
-  const me = { key, root, sources: kinds.map((k) => archiveSource(k, ctx.user)), queue: [], loading: false, done: false, shown: 0 };
+  const me = { key, root, feed, sources: kinds.map((k) => archiveSource(k, ctx.user)), queue: [], loading: false, done: false, shown: 0 };
   run = me;
 
   const loadMore = async () => {
@@ -244,18 +245,35 @@ function start(ctx, key) {
   me.io.observe(status);
 }
 
+// Feeds from runs that have stopped but are still on screen.
+const leftovers = new Set();
+const LEFTOVER_MS = 5000;
+
 function stop() {
   if (!run) return;
   run.io?.disconnect();
-  run.root.remove();
-  document.documentElement.classList.remove('creeper-active');
+  // Reddit changes the URL first and keeps the old page up until the next one is ready, then swaps
+  // it out, taking our feed with it. Removing ours now would flash a bare profile in between.
+  leftovers.add({ root: run.root, feed: run.feed, until: Date.now() + LEFTOVER_MS });
   run = null;
+}
+
+function sweep(all) {
+  for (const l of leftovers) {
+    // Some navigations (switching tabs) replace only the feed, so ours goes when the feed it followed goes.
+    if (all || !l.feed.isConnected || !l.root.isConnected || Date.now() > l.until) {
+      l.root.remove();
+      leftovers.delete(l);
+    }
+  }
+  if (!run && leftovers.size === 0) document.documentElement.classList.remove('creeper-active');
 }
 
 function check() {
   const ctx = profileContext();
   const key = ctx && `${ctx.user.toLowerCase()}|${ctx.tab}`;
   if (run && (run.key !== key || !run.root.isConnected)) stop();
+  sweep(false);
   if (run || !ctx) return;
   if (findEmptyState() || (isForced() && document.querySelector('shreddit-feed'))) start(ctx, key);
 }
