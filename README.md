@@ -6,8 +6,6 @@
 
 A Chrome extension that shows the posts and comments of Reddit profiles that hide their history. They appear on the profile page the same way they would on a public profile, and you can vote, share, repost and open menus as usual.
 
-![A hidden profile's Posts tab with the extension on](store/screenshot-1.png)
-
 ## How it works
 
 Reddit lets users hide their history from their profile, but the posts and comments stay public in the communities where they were made. The extension finds them again in two steps:
