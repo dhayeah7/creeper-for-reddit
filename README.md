@@ -6,6 +6,8 @@
 
 A Chrome extension that shows the posts and comments of Reddit profiles that hide their history. They appear on the profile page the same way they would on a public profile, and you can vote, share, repost and open menus as usual.
 
+![Creeper for Reddit showing posts on a profile](store/screenshot-1-hero.png)
+
 ## How it works
 
 Reddit lets users hide their history from their profile, but the posts and comments stay public in the communities where they were made. The extension finds them again in two steps:
@@ -13,7 +15,11 @@ Reddit lets users hide their history from their profile, but the posts and comme
 1. It asks the public [Arctic Shift](https://arctic-shift.photon-reddit.com) archive for the IDs of the user's posts and comments, newest first.
 2. It asks Reddit to draw each item with its own components. Reddit draws them exactly as they look on a public profile, with the current score.
 
-Items load in order as you scroll. Posts and comments the author deleted stay hidden.
+![Reddit's hidden-profile message next to the same profile with Creeper loading its posts](store/screenshot-2-before-after.png)
+
+Items load in order as you scroll. Posts and comments the author deleted stay hidden. Because Reddit draws each item, its buttons and menus work as usual:
+
+![A post shown by Creeper with Reddit's Share menu open](store/screenshot-3-native.png)
 
 The extension runs only on `www.reddit.com`, on the Overview, Posts and Comments tabs of a profile that shows Reddit's "hidden" message. Public profiles are left alone.
 
