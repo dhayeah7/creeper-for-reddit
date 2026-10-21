@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <radialGradient id="iris" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#ffb347"/>
+      <stop offset="55%" stop-color="#ff4500"/>
+      <stop offset="100%" stop-color="#b31b00"/>
+    </radialGradient>
+  </defs>
+  <polygon points="125.0,64.0 113.9,73.9 115.3,87.2 98.1,90.5 89.3,103.1 71.4,98.6 55.3,106.6 42.4,95.8 24.1,96.5 20.3,82.9 5.5,76.1 12.0,64.0 5.5,51.9 20.3,45.1 24.1,31.5 42.4,32.2 55.3,21.4 71.4,29.4 89.3,24.9 98.1,37.5 115.3,40.8 113.9,54.1" fill="#0d0d0d"/>
+  <g transform="rotate(16 41 64)"><path d="M23.0,64 Q41,34 59.0,64 Q41,94 23.0,64Z" fill="url(#iris)"/><path d="M41,53 Q46,64 41,75 Q36,64 41,53Z" fill="#000"/></g>
+  <g transform="rotate(-16 87 64)"><path d="M69.0,64 Q87,34 105.0,64 Q87,94 69.0,64Z" fill="url(#iris)"/><path d="M87,53 Q92,64 87,75 Q82,64 87,53Z" fill="#000"/></g>
+</svg>

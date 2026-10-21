@@ -1,0 +1,73 @@
+/* Injected before first paint, so Reddit's "keeps their posts hidden" message never shows. */
+shreddit-feed #empty-feed-content {
+  display: none !important;
+}
+
+/* Force mode runs on public profiles; hide Reddit's own items there so nothing is listed twice. */
+html.creeper-active shreddit-feed > article,
+html.creeper-active shreddit-feed > hr {
+  display: none !important;
+}
+
+#creeper-feed .creeper-status {
+  margin: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-neutral-content-weak, #576f76);
+}
+
+#creeper-feed .creeper-retry {
+  display: block;
+  margin: 10px auto 0;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-neutral-content-strong, #fff);
+  background: var(--color-secondary-background, #2a3236);
+  cursor: pointer;
+}
+
+#creeper-feed .creeper-retry:hover {
+  background: var(--color-secondary-background-hover, #333d42);
+}
+
+#creeper-feed .creeper-status:empty {
+  margin: 0;
+  height: 1px;
+}
+
+/* Peeking-eyes loader: drawn 👀 left of the caption, pupils sliding left to right. */
+#creeper-feed .creeper-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 0 8px;
+}
+
+#creeper-feed .creeper-peek {
+  display: block;
+  flex: none;
+}
+
+#creeper-feed .creeper-pupil {
+  animation: creeper-look 0.5s ease-in-out infinite alternate;
+}
+
+#creeper-feed .creeper-caption {
+  margin: 0;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-neutral-content-weak, #576f76);
+}
+
+@keyframes creeper-look {
+  from { transform: translateX(-2.2px); }
+  to { transform: translateX(2.2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #creeper-feed .creeper-pupil { animation: none; }
+}
